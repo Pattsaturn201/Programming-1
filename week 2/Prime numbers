@@ -7,15 +7,30 @@ int divisorcount=0;
 
 int main(void)
 {
-  printf("Enter a integer number to verify if it is prime"); //A little introduction
+  printf("Enter a integer number to verify if it is prime");//
   scanf("%d",num);
   
-  if (num<=1) //we dertermine prime number definition
+  if (num<=1)//aplication of 
   {
     printf("the number is not prime");
   }
   else
   {
+    for ( i = 1; i <= num ; i++)
+    {
+     if (num%i==0)
+     {
+
+       divisorcount++;
+       printf ("%d",divisorcount);
+    
+     }
+      if (divisorcount<2)
+       {
+        /* code */
+       }
+     
+    }
     
   } 
   return 0;
