@@ -1,0 +1,22 @@
+# include<stdio.h>
+
+const num=0;;
+int i;
+int divisorcount=0;
+
+
+int main(void)
+{
+  printf("Enter a integer number to verify if it is prime");
+  scanf("%d",num);
+  
+  if (num<=1)
+  {
+    printf("the number is not prime");
+  }
+  else
+  {
+    
+  } 
+  return 0;
+}
