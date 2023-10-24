@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+
+
+int main(int argc, char const *argv[])
+{
+   
+   int i; 
+   int cantidad;
+    
+   printf("Ingrese la cantidad de numeros\n");
+   scanf("%d")
+
+   
+   do
+    {
+        /* code */
+    } while (i<cantidad);
+    
+    
+    int num=0;
+    int par=0;
+    int impar=0;
+   
+    printf("Ingrese el numero ");
+    scanf("%d",&num);
+
+    if (num%3==0)
+    {
+        par++;
+    }
+    if (num%2==0)
+    {
+        impar++;
+    }
+    
+
+    
+
+
+
+      
+    
+
+
+
+ 
+
+    
+    return 0;
+}
