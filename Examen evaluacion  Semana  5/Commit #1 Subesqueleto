@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+
+
+int main(int argc, char const *argv[])
+{
+    int cantidad;
+    int n;
+
+    printf("Ingrese la cantidad  de num a ingresar ");
+
+    
+
+    int num[cantidad];
+    return 0;
+}
