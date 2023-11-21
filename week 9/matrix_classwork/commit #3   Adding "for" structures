@@ -1,0 +1,50 @@
+/*Build a program in C language that:
+
+Create an array whose dimensions are entered by the user. The matrix can have any dimension.
+Initialize the entire array to zeros.
+Print the matrix with the main diagonal with values ​​at 1.*/
+
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+   int n,m;
+    printf("Enter a value for the number of rows: ");
+    scanf("%d",n);
+    prinft("Enter a value for the number of columns: ");
+    scanf("%d",m);
+
+    int matrix [n][m];
+
+    for ( int i = 0; i < n ; i++)
+    {
+       for ( int j = 0; i < m; j++)
+       {
+         matrix[i][j] = 0;
+       }
+       
+    } 
+
+    for ( int i = 0; i < n ; i++)
+    {
+       for ( int j = 0; i < m; j++)
+       {
+        if (i==j)
+        {
+          matrix[i][j] = 0;
+        }
+       
+    } 
+    return 0;
+
+    for ( int i = 0; i < n ; i++)
+    {
+       for ( int j = 0; i < m; j++)
+       {
+         printf("%d\t", matrix[i][j]);
+       }
+        printf("\n");
+       
+    } 
+    return 0;
+}
