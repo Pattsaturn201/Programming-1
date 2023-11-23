@@ -1,0 +1,50 @@
+/*Build a program in C language where the user enters the dimensions 
+of a two-dimensional array (matrix), the program fills the matrix with 
+random numbers between 0 and 100. Then, calculate the transposed matrix. 
+The program should print the original matrix and the transposed matrix.*/
+
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+    int m=0 , n=0 ; // we make an declaration of variables 
+    int matrix[n][m];
+
+    printf("Enter a value for the number of rows:\n"); // we ask the user to enter the number of rows and columns
+    scanf("%d",n);
+
+    printf("Enter a value for the number of columns:\n");
+    scanf("%d",n);
+
+    srand (time(NULL));//the strat of the random function
+    int matrix[n][m];
+    int inversematrix[n][m];
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            matrix[i][j]=rand()%100;
+        }
+        
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            inversematrix[i][j]=matrix[j][i];
+        }
+        
+    }
+
+
+    
+
+
+    
+
+
+
+    return 0;
+}
