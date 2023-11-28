@@ -1,0 +1,85 @@
+/*We have a matrix sum of  A and B matrices
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(int argc, char const *argv[])
+{
+    int n, m;
+    printf("Enter a value for the number of rows:\n");
+    scanf("%d",&n);
+    printf("Enter a value for the number of columns:\n");
+    scanf("%d",&m);
+
+    int matrixA[n][m];
+    int matrixB[n][m];
+    int matrixCtotal[n][m];
+
+    srand(time(NULL));
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            matrixA[i][j]=rand()%100;
+        }
+        
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            matrixB[i][j]=rand()%100;
+        }
+        
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            matrixCtotal[i][j]=matrixA[i][j]+matrixB[i][j];
+        }
+        
+    }
+
+    printf("Matrix A");
+    for (int  i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf(" %d ",matrixA[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("Matrix B");
+    for (int  i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf(" %d ",matrixB[i][j]);
+        }
+        printf("\n");
+    }
+
+    
+    printf("Resultant Matrix");
+    for (int  i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf(" %d ",matrixCtotal[i][j]);
+        }
+        printf("\n");
+    }
+
+
+
+
+
+    return 0;
+}
