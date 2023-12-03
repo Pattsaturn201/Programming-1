@@ -1,0 +1,68 @@
+/*Update the matrix addition exercise, using the concept of Functions.*/
+
+#include <stdio.h>  
+#include <stdlib.h>
+#include <time.h>
+
+void createrandmatrix(int n, int m, int matrix[n][m])//independent function to create random matrix
+{
+   srand(time(NULL));// random function 
+
+   for (int i = 0; i < n; i++)// for structure to create the  matrix 
+    {
+        for (int j = 0; j < m; j++)
+        {
+            matrix[i][j]=rand()%100;//random values in every adress of each matrix
+        }
+        
+    }
+}
+
+void summatrix(int n, int m, int matrixA[n][m], int matrixB[n][m], int resultofsum[n][m])//here we make the addition funciton that is going to make the sum of both A and B matrices 
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            resultofsum[i][j]=matrixA[i][j]+matrixB[i][j];//Sum operation
+        }
+        
+    }
+}
+
+void printmatrix(int n, int m, int matrix[n][m], const char* Matrixkind )//the las function to print the two matrices and the result one 
+{
+    printf("\n %s \n", Matrixkind);
+    for (int  i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf(" %d ",matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
+int main(int argc, char const *argv[])//create the main function 
+{
+    int n, m;
+    printf("Enter a value for the number of rows:\n");//ask the user to introduce values of the rows and columns of both matrices
+    scanf("%d",&n);
+    printf("Enter a value for the number of columns:\n");
+    scanf("%d",&m);
+
+    int matrixA[n][m];//declaration of the matrix because we already have the value of n and m 
+    int matrixB[n][m];
+    int matrixCtotal[n][m];
+
+    createrandmatrix(n, m, matrixA);//calling of functions
+    createrandmatrix(n, m, matrixB);
+    summatrix(n, m, matrixA, matrixB, matrixCtotal);
+
+    printmatrix(n, m, matrixA," Matrix A" );//calling of functions
+    printmatrix(n, m, matrixB," Matrix B" );
+    printmatrix(n, m, matrixCtotal," Matrix C (total of the addition)" );
+
+    return 0;
+}
