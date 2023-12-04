@@ -1,0 +1,50 @@
+/* 
+#Create a three-dimensional matrix with dimensions specified by the user. 
+# The matrix should consist of k matrices, each with i rows and j columns, 
+# where k is the number of matrices, i is the number of rows, and j is the number of columns.
+# Update Update the three-dimensional matrix exercise, using the concept of Functions.*/
+#include <stdio.h>// we insert the standard library 
+
+void creationmultimatrix(int d, int n, int m, int multidimatrix[d][n][m] )
+{
+    for (int k = 0; k < d; k++)//for loop that creates and printfs all matrices
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for ( int j = 0; j < m; j++)
+            {
+                if (k == d-1)//if condition to indentify last matrix filled with number 1
+                {
+                    multidimatrix[k][i][j]=1;
+                    printf(" %d ",multidimatrix[k][i][j]);
+                }
+                else
+                {
+                    multidimatrix[k][i][j]=0; 
+                    printf(" %d ",multidimatrix[k][i][j]);
+                }             
+            }
+            printf("\n"); 
+        }
+        printf("\n");
+    
+    }
+
+}
+
+int main(int argc, char const *argv[]) //initialization of the main function
+{
+    int m, n, d;//declaration of the multidimensional matrix 
+    printf("enter the number of matrices: ");// Ask the user for the values of each variable
+    scanf("%d",&d);
+    printf("enter the number of rows: ");
+    scanf("%d",&n);
+    printf("enter the numbe of columns: ");
+    scanf("%d",&m);
+
+    int multidimensionalmatrix[d][n][m];//declaration of the multidimensional matrix
+
+    creationmultimatrix(d, n, m, multidimensionalmatrix);
+
+    return 0;
+}
