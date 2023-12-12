@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+// Definición de la estructura para un suministro médico
+struct MedicalSupply {
+    char name[30];
+    int monthlyIncome[12];
+    int monthlyExpenses[12];
+};
+
+// Función para generar valores aleatorios de ingresos y gastos
+int generateRandomValue() {
+    return rand() % 1000 + 1; // Genera un valor aleatorio entre 1 y 1000
+}
+
+// Función para generar un nombre aleatorio
+void getRandomName(char *name) {
+    // Puedes implementar lógica más avanzada para nombres aleatorios si es necesario
+    sprintf(name, "Supply%d", rand() % 1000);
+}
+
+// Función para ingresar datos de suministro médico con valores aleatorios
+void inputMedicalSupplyData(struct MedicalSupply *supply) {
+    // Generar un nombre aleatorio
+    getRandomName(supply->name);
+
+    // Generar valores aleatorios para ingresos y gastos mensuales
+    for (int i = 0; i < 12; i++) {
+        supply->monthlyIncome[i] = generateRandomValue();
+
+        // Asegurarse de que los gastos no sean mayores que los ingresos
+        do {
+            supply->monthlyExpenses[i] = generateRandomValue();
+        } while (supply->monthlyExpenses[i] > supply->monthlyIncome[i]);
+    }
+}
+
+// Función para mostrar detalles de suministro médico
+void displayDetails(struct MedicalSupply supply) {
+    printf("Details for %s:\n", supply.name);
+    for (int i = 0; i < 12; i++) {
+        printf("Month %d - Income: %d, Expenses: %d\n", i + 1, supply.monthlyIncome[i], supply.monthlyExpenses[i]);
+    }
+}
+
+// Función para calcular y mostrar totales de ingresos y gastos
+void calculateAndDisplayTotals(struct MedicalSupply supply) {
+    int totalIncome = 0, totalExpenses = 0;
+    for (int i = 0; i < 12; i++) {
+        totalIncome += supply.monthlyIncome[i];
+        totalExpenses += supply.monthlyExpenses[i];
+    }
+
+    printf("Total income for %s: %d\n", supply.name, totalIncome);
+    printf("Total expenses for %s: %d\n", supply.name, totalExpenses);
+}
+
+int main() {
+    // Inicializar la semilla para generar números aleatorios
+    srand(time(NULL));
+
+    // Arreglo de objetos MedicalSupply para hasta 30 suministros médicos
+    struct MedicalSupply supplies[30];
+
+    // Ingresar datos aleatorios para cada suministro médico
+    for (int i = 0; i < 30; i++) {
+        inputMedicalSupplyData(&supplies[i]);
+    }
+
+    int choice;
+    do {
+        // Mostrar opciones del menú
+        printf("\nMenu:\n");
+        printf("1. Display details for each medical supply\n");
+        printf("2. Display total income and expenses for each medical supply\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                for (int i = 0; i < 30; i++) {
+                    displayDetails(supplies[i]);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 30; i++) {
+                    calculateAndDisplayTotals(supplies[i]);
+                }
+                break;
+            case 3:
+                printf("Exiting the program.\n");
+                break;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice != 3);
+
+    return 0;
+}
+
