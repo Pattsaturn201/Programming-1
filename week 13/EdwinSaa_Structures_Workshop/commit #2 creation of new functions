@@ -1,0 +1,87 @@
+#include <stdio.h>
+
+struct alumno
+{
+    int matricula;
+    char nombre[50];
+    char direccion[50];
+    char materia[50];
+    float nota;
+};
+//se crea un conjunto de funciones la cuales seran llamadas a la funcion principal
+void ingresoDatos(struct alumno alumnos[], int *contador);//se crea un puntero con la finalidad de no clonar datos inecesarios
+void consultarDatos(struct alumno alumnos[], int contador);
+
+
+void ingresoDatos(struct alumno alumnos[], int *contador)//funcion donde se maneja los datos a ingresar
+{
+    if (*contador < 50)
+    {
+        int nuevaMatricula;//se creo otra variable 
+
+        // Verificar si la matrícula ya existe
+        do
+        {
+            printf("Ingrese la matrícula: ");
+            scanf("%d", &nuevaMatricula);
+
+            if (matriculaExistente(alumnos, *contador, nuevaMatricula))
+            {
+                printf("La matrícula ya existe. Ingrese una matrícula diferente.\n");// aunque ya se tenga otra opcion para comprobar la existencia de la matricula se utiliza este procedimiento por seguridad 
+            }
+            else
+            {
+                break;
+            }
+        } while (1);
+
+        (*contador)++;
+    }
+    else
+    {
+        printf("No es posible ingresar más datos limite maximo alcanzado, en el caso de modificar o remplazar dator utilize la opcion 3.\n");
+    }
+}
+
+
+
+int main()//funcion principal que posee el menu y llamara las demas 
+{
+    int opcion;
+    int contador = 0;
+    struct alumno alumnos[50]; // se determina una capacidad máxima de 50 alumnos como limite
+
+    do
+    {
+        printf("\n-- Menú --\n");
+        printf("1. Ingresar datos\n");
+        printf("2. Consultar datos por matrícula\n");
+        printf("3. Modificar datos por matrícula\n");
+        printf("4. Salir\n");
+        printf("Ingrese su opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion)
+        {
+        case 1:
+            ...........
+            break;
+        case 2:
+            ...........
+            break;
+        case 3:
+            ............
+            break;
+        case 4:
+            printf("Cerrando....\n");
+            break;
+        default:
+            printf("Opcion no existente.\n");
+            break;
+        }
+
+    } while (opcion != 4);
+
+    return 0;
+}
+
