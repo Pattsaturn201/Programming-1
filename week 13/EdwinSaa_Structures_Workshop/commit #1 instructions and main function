@@ -1,0 +1,73 @@
+/*Goals:
+
+Develop a C program that demonstrates the use of Structures.
+
+Indications:
+
+Upload the link to the GitHub repository, with the requested code.
+Each student must work on the structure example from the previous class (student) and must create a program that allows the user to enter and present data for n students.
+functions:
+gets();
+puts();
+fflush();
+
+NOTE : do not burn data in code
+
+struct student
+{
+    int enrollment;
+    char name[50];
+    char address[50];
+    char race[50];
+    average float;
+}
+*/
+#include <stdio.h>
+
+struct alumno
+{
+    int matricula;
+    char nombre[50];
+    char direccion[50];
+    char materia[50];
+    float nota;
+};
+int main()//funcion principal que posee el menu y llamara las demas 
+{
+    int opcion;
+    int contador = 0;
+    struct alumno alumnos[50]; // se determina una capacidad máxima de 50 alumnos como limite
+
+    do
+    {
+        printf("\n-- Menú --\n");
+        printf("1. Ingresar datos\n");
+        printf("2. Consultar datos por matrícula\n");
+        printf("3. Modificar datos por matrícula\n");
+        printf("4. Salir\n");
+        printf("Ingrese su opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion)
+        {
+        case 1:
+            // ingreso de datos
+            break;
+        case 2:
+           // consulta de datos
+            break;
+        case 3:
+           // ......
+            break;
+        case 4:
+            printf("Cerrando...\n");
+            break;
+        default:
+            printf("La opcion no existe.\n");
+            break;
+        }
+
+    } while (opcion != 4);
+
+    return 0;
+}
