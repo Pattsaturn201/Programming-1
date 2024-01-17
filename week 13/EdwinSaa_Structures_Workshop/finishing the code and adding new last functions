@@ -1,0 +1,211 @@
+#include <stdio.h>
+
+struct alumno
+{
+    int matricula;
+    char nombre[50];
+    char direccion[50];
+    char materia[50];
+    float nota;
+};
+//se crea un conjunto de funciones la cuales seran llamadas a la funcion principal
+void ingresoDatos(struct alumno alumnos[], int *contador);//se crea un puntero con la finalidad de no clonar datos inecesarios
+void consultarDatos(struct alumno alumnos[], int contador);
+int matriculaExistente(struct alumno alumnos[], int contador, int matricula);// esta posee int debido aque maneja una simple estrucutura que depende solamente del entero
+void modificarDatos(struct alumno alumnos[], int contador);
+
+
+
+
+void ingresoDatos(struct alumno alumnos[], int *contador)//funcion donde se maneja los datos a ingresar
+{
+    if (*contador < 50)
+    {
+        int nuevaMatricula;//se creo otra variable 
+
+        // Verificar si la matrícula ya existe
+        do
+        {
+            printf("Ingrese la matrícula: ");
+            scanf("%d", &nuevaMatricula);
+
+            if (matriculaExistente(alumnos, *contador, nuevaMatricula))
+            {
+                printf("La matrícula ya existe. Ingrese una matrícula diferente.\n");// aunque ya se tenga otra opcion para comprobar la existencia de la matricula se utiliza este procedimiento por seguridad 
+            }
+            else
+            {
+                break;
+            }
+        } while (1);
+
+        alumnos[*contador].matricula = nuevaMatricula;
+
+        printf("   Nombre: ");
+        fflush(stdin);//funcion cuyo objetivo es limpiar el buffer de salida
+        fgets(alumnos[*contador].nombre, sizeof(alumnos[*contador].nombre), stdin);//mediante fgets se  lee una línea desde la entrada estándar "(stdin)" que previamente habiamos limpiado
+        alumnos[*contador].nombre[strcspn(alumnos[*contador].nombre, "\n")] = '\0';//tambien se suele utilizar comunmente para el trato de strings 
+
+        printf("   Dirección: ");
+        fflush(stdin);
+        fgets(alumnos[*contador].direccion, sizeof(alumnos[*contador].direccion), stdin);
+        alumnos[*contador].direccion[strcspn(alumnos[*contador].direccion, "\n")] = '\0';
+
+        printf("   Materia: ");
+        fflush(stdin);
+        fgets(alumnos[*contador].materia, sizeof(alumnos[*contador].materia), stdin);
+        alumnos[*contador].materia[strcspn(alumnos[*contador].materia, "\n")] = '\0';
+
+        printf("   Nota: ");
+        scanf("%f", &alumnos[*contador].nota);// no se utiliza fgets por ser entero
+
+        (*contador)++;
+    }
+    else
+    {
+        printf("No es posible ingresar más datos limite maximo alcanzado, en el caso de modificar o remplazar dator utilize la opcion 3.\n");
+    }
+}
+
+void consultarDatos(struct alumno alumnos[], int contador)
+{
+    if (contador > 0)
+    {
+        int matriculaBuscar;
+        int encontrado = 0;
+
+        printf("Ingrese la matrícula a buscar: ");
+        scanf("%d", &matriculaBuscar);
+
+        for (int i = 0; i < contador; i++)
+        {
+            if (alumnos[i].matricula == matriculaBuscar)
+            {
+                printf("\nInformación del alumno con matrícula %d:\n", matriculaBuscar);
+                printf("   Nombre: %s\n", alumnos[i].nombre);
+                printf("   Dirección: %s\n", alumnos[i].direccion);
+                printf("   Materia: %s\n", alumnos[i].materia);
+                printf("   Nota: %.2f\n", alumnos[i].nota);
+
+                encontrado = 1;
+                break;
+            }
+        }
+
+        if (!encontrado)
+        {
+            printf("No se encontraron datos para la matrícula %d.\n", matriculaBuscar);
+        }
+    }
+    else
+    {
+        printf("No hay datos ingresados para consultar.\n");
+    }
+}
+
+int matriculaExistente(struct alumno alumnos[], int contador, int matricula)
+{
+    for (int i = 0; i < contador; i++)
+    {
+        if (alumnos[i].matricula == matricula)
+        {
+            return 1; // La matrícula ya existe
+        }
+    }
+    return 0; // La matrícula no existe
+}
+
+void modificarDatos(struct alumno alumnos[], int contador)
+{
+    if (contador > 0)
+    {
+        int matriculaModificar;
+        int encontrado = 0;
+
+        printf("Ingrese la matrícula a modificar: ");
+        scanf("%d", &matriculaModificar);
+
+        for (int i = 0; i < contador; i++)
+        {
+            if (alumnos[i].matricula == matriculaModificar)
+            {
+                printf("\nModificando información del alumno con matrícula %d:\n", matriculaModificar);
+
+                printf("   Nombre actual: %s\n", alumnos[i].nombre);
+                printf("   Nueva Nombre: ");
+                fflush(stdin);
+                fgets(alumnos[i].nombre, sizeof(alumnos[i].nombre), stdin);
+                alumnos[i].nombre[strcspn(alumnos[i].nombre, "\n")] = '\0';
+
+                printf("   Dirección actual: %s\n", alumnos[i].direccion);
+                printf("   Nueva Dirección: ");
+                fflush(stdin);
+                fgets(alumnos[i].direccion, sizeof(alumnos[i].direccion), stdin);
+                alumnos[i].direccion[strcspn(alumnos[i].direccion, "\n")] = '\0';
+
+                printf("   Materia actual: %s\n", alumnos[i].materia);
+                printf("   Nueva Materia: ");
+                fflush(stdin);
+                fgets(alumnos[i].materia, sizeof(alumnos[i].materia), stdin);
+                alumnos[i].materia[strcspn(alumnos[i].materia, "\n")] = '\0';
+
+                printf("   Nota actual: %.2f\n", alumnos[i].nota);
+                printf("   Nueva Nota: ");
+                scanf("%f", &alumnos[i].nota);
+
+                printf("Datos modificados correctamente.\n");
+                encontrado = 1;
+                break;
+            }
+        }
+
+        if (!encontrado)
+        {
+            printf("No se encontraron datos para la matrícula %d.\n", matriculaModificar);
+        }
+    }
+    else
+    {
+        printf("No hay datos ingresados para modificar.\n");
+    }
+}
+
+int main()//funcion principal que posee el menu y llamara las demas 
+{
+    int opcion;
+    int contador = 0;
+    struct alumno alumnos[50]; // se determina una capacidad máxima de 50 alumnos como limite
+
+    do
+    {
+        printf("\n-- Menú --\n");
+        printf("1. Ingresar datos\n");
+        printf("2. Consultar datos por matrícula\n");
+        printf("3. Modificar datos por matrícula\n");
+        printf("4. Salir\n");
+        printf("Ingrese su opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion)
+        {
+        case 1:
+            ingresoDatos(alumnos, &contador);
+            break;
+        case 2:
+            consultarDatos(alumnos, contador);
+            break;
+        case 3:
+            modificarDatos(alumnos, contador);
+            break;
+        case 4:
+            printf("Cerrando....\n");
+            break;
+        default:
+            printf("Opcion no existente.\n");
+            break;
+        }
+
+    } while (opcion != 4);
+
+    return 0;
+}
