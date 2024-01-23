@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Students 
+{
+    int matricule;
+    char name[50];
+    char adress[50];
+    char carrer[50];
+    float grade;
+};
+
+
+void getStudent(struct Students *student);
+void showStudent(struct Students *student);
+
+
+
+int main(int argc, char const *argv[])
+{
+    int option
+   
+    do
+    {
+        printf("Welcome to the Menu");
+        printf("1.Enter Students");
+        printf("2.Show Students");
+        scanf("%d",option);
+        
+        switch (option)
+        {
+        case 1:
+
+            getStudent(struct Students *student);
+
+            break;
+        case 2:
+            getStudent(struct Students *student);
+            break;
+        case 3:
+            printf("Thank you for using our code ");
+            return 0;
+            break;
+        default:
+        
+            printf("This option does not exist,try again");
+
+            break;
+        }
+        
+    } while (option != 3 );
+    
+    return 0;
+}
+
+void getStudent(struct Students *student)
+{
+   FILE *archive;
+
+   archive = fopen("Registro.txt","w");
+
+   printf("matricula: ");
+   scanf(" %d ",&Students.matricula);
+   while (getchar() != '\n');
+   printf(" Name: ");
+   fgets(" %s ",&Students.name);
+   printf("adress: ");
+   fgets(" %s ",&Studens.adress);
+   pritf("career: ");
+   fgets(" %s ",&Studens.carrer);
+   pritf("grade");
+   scanf(" %s ",&Studens.grade);
+   while (getchar() != '\n');
+        ; // Limpiar el búfer de entrada
+   fclose(archive);
+
+
+}
+
+
+
+
+
