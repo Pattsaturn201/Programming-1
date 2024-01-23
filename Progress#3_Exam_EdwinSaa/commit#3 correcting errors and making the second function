@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Students
+{
+    int matricule;
+    char name[50];
+    char adress[50];
+    char carrer[50];
+    float grade;
+};
+
+void getStudent(struct Students *student);
+void showStudent(struct Students *student);
+
+int main(int argc, char const *argv[])
+{
+    int option; // Declare option variable
+    struct Students student;
+
+    do
+    {
+        printf("Welcome to the Menu\n");
+        printf("1. Enter Students\n");
+        printf("2. Show Students\n");
+        printf("3. Exit\n");
+        scanf("%d", &option);
+
+        switch (option)
+        {
+        case 1:
+            getStudent(&student); 
+            break;
+        case 2:
+            showStudent(&student);
+            break;
+        case 3:
+            printf("Thank you for using our code\n");
+            return 0;
+        default:
+            printf("This option does not exist, try again\n");
+            break;
+        }
+
+    } while (option != 3);
+
+    return 0;
+}
+
+void getStudent(struct Students *student)
+{
+    FILE *archive;
+    archive = fopen("Registro.txt", "a"); 
+
+    printf("Matricula: ");
+    scanf("%d", &student->matricule);
+    printf("Name: ");
+    scanf("%s", student->name);
+    printf("Address: ");
+    scanf("%s", student->adress);
+    printf("Career: ");
+    scanf("%s", student->carrer);
+
+    fprintf(archive, "%d %s %s %s\n", student->matricule, student->name, student->adress, student->carrer);
+    fclose(archive);
+}
+
+void showStudent(struct Students *student)
+{
+    FILE *archive;
+    archive = fopen("Registro.txt", "r");
+
+    while (fscanf(archive, "%d %s %s %s", &student->matricule, student->name, student->adress, student->carrer) != EOF)
+    {
+        printf("Matricula: %d\n", student->matricule);
+        printf("Name: %s\n", student->name);
+        printf("Address: %s\n", student->adress);
+        printf("Career: %s\n", student->carrer);
+        printf("\n");
+    }
+
+    fclose(archive);
+}
